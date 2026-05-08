@@ -1,489 +1,432 @@
 import {
-  Calendar,
-  CheckCircle,
-  ChevronRight,
-  Clock,
-  Download,
-  Gift,
-  Heart,
-  LayoutDashboard,
-  Mail,
-  MapPin,
-  MessageCircle,
-  QrCode,
-  Shirt,
-  Smartphone,
-  Star,
-  Table2,
-  Upload,
-  UserCheck,
   Users,
-} from "lucide-react";
+  LayoutGrid,
+  BarChart3,
+  MessageCircle,
+  CheckCircle,
+  Star,
+  Heart,
+  Shield,
+  Smartphone,
+  Mail,
+  Phone,
+  ChevronRight,
+  ListChecks,
+  Infinity,
+} from 'lucide-react';
+
+const WHATSAPP = '524421204333';
+const EMAIL = 'arturo.aoh.26@gmail.com';
 
 const features = [
   {
-    icon: QrCode,
-    title: "Invitaciones con código único",
-    desc: "Cada invitado recibe un código personalizado para acceder a su RSVP. Sin contraseñas ni cuentas.",
+    icon: Users,
+    title: 'Gestión de Invitados',
+    desc: 'Administra tu lista completa con estados de confirmación: pendiente, confirmado o rechazado. Control total de pases por invitado.',
   },
   {
-    icon: UserCheck,
-    title: "RSVP con acompañantes",
-    desc: "Los invitados confirman asistencia y registran a sus acompañantes en un flujo simple y elegante.",
+    icon: Heart,
+    title: 'Acompañantes',
+    desc: 'Cada invitado puede traer acompañantes registrados. Lleva el conteo exacto de asistentes para una planeación sin sorpresas.',
   },
   {
-    icon: LayoutDashboard,
-    title: "Panel de administración",
-    desc: "Dashboard completo con estadísticas en tiempo real: confirmados, pendientes y declinados.",
+    icon: LayoutGrid,
+    title: 'Distribución de Mesas',
+    desc: 'Asigna invitados a mesas, designa capitanes de mesa y visualiza la distribución completa de tu salón al instante.',
   },
   {
-    icon: Table2,
-    title: "Asignación de mesas drag & drop",
-    desc: "Arrastra invitados a las mesas visualmente. Valida capacidad y asigna capitanes de mesa.",
-  },
-  {
-    icon: Upload,
-    title: "Importación CSV masiva",
-    desc: "Sube tu lista de invitados desde Excel. Vista previa antes de confirmar, con detección de errores.",
-  },
-  {
-    icon: Download,
-    title: "Exportación de datos",
-    desc: "Exporta la lista completa con nombre, tipo, teléfono, confirmación y mesa en un clic.",
+    icon: BarChart3,
+    title: 'Estadísticas en Tiempo Real',
+    desc: 'Dashboard con confirmaciones, rechazos, pendientes y total de asistentes. Toma decisiones con datos actualizados.',
   },
   {
     icon: MessageCircle,
-    title: "WhatsApp integrado",
-    desc: "Genera y envía el enlace de invitación directamente por WhatsApp para cada invitado.",
+    title: 'Links de WhatsApp',
+    desc: 'Genera enlaces de WhatsApp directamente para cada invitado. Comunícate rápido sin buscar números.',
   },
   {
-    icon: Calendar,
-    title: "Añadir al calendario",
-    desc: "Compatible con iOS, Android y escritorio. Agrega el evento al calendario del invitado automáticamente.",
+    icon: ListChecks,
+    title: 'Checklist de Tareas',
+    desc: 'Lista organizada por secciones con prioridades, fechas límite y notas. Arrastra para reordenar. Todo bajo control.',
   },
   {
-    icon: MapPin,
-    title: "Múltiples ubicaciones",
-    desc: "Muestra la ceremonia y la recepción con horarios y enlaces a Google Maps para cada lugar.",
+    icon: Shield,
+    title: 'Multi-evento',
+    desc: 'Administra varios eventos desde una sola cuenta. Ideal para organizadores y coordinadores de bodas.',
   },
   {
-    icon: Clock,
-    title: "Cuenta regresiva en vivo",
-    desc: "Contador dinámico hacia la fecha del evento visible en la página principal para invitados.",
-  },
-  {
-    icon: Gift,
-    title: "Mesa de regalos",
-    desc: "Integra tus mesas de regalos y datos bancarios con botón de copiar para mayor comodidad.",
-  },
-  {
-    icon: Shirt,
-    title: "Código de vestimenta",
-    desc: "Sección visual de paleta de colores y notas del dress code para orientar a tus invitados.",
+    icon: Smartphone,
+    title: '100% Responsivo',
+    desc: 'Funciona perfectamente en móvil, tablet y escritorio. Administra desde donde estés, el día del evento.',
   },
 ];
 
 const steps = [
-  {
-    num: "01",
-    title: "Configura tu evento",
-    desc: "Define fecha, lugares, itinerario, mesa de regalos y paleta de colores desde el backend.",
-  },
-  {
-    num: "02",
-    title: "Carga tu lista de invitados",
-    desc: "Importa desde CSV o agrega uno a uno. El sistema genera códigos únicos automáticamente.",
-  },
-  {
-    num: "03",
-    title: "Comparte las invitaciones",
-    desc: "Envía el enlace personalizado por WhatsApp. Los invitados confirman en segundos.",
-  },
-  {
-    num: "04",
-    title: "Gestiona en tiempo real",
-    desc: "Visualiza confirmaciones, asigna mesas y monitorea todo desde el panel de administración.",
-  },
+  { number: '01', title: 'Recibe tu acceso', desc: 'Configuramos tu cuenta y evento en menos de 24 horas.' },
+  { number: '02', title: 'Carga tu lista', desc: 'Importa o agrega invitados uno a uno con sus datos.' },
+  { number: '03', title: 'Comparte el link', desc: 'Cada invitado confirma asistencia desde su celular.' },
+  { number: '04', title: 'Administra en vivo', desc: 'Ve confirmaciones en tiempo real y ajusta la distribución.' },
 ];
 
-const adminFeatures = [
-  "Estadísticas en vivo: confirmados, pendientes y rechazados",
-  "CRUD completo de invitados y acompañantes",
-  "Búsqueda y filtrado por nombre",
-  "Vista expandida de acompañantes por invitado",
-  "Asignación de mesas con validación de capacidad",
-  "Capitán de mesa con ícono de corona",
-  "Importación/exportación CSV con codificación UTF-8",
-  "Autenticación segura con JWT",
-];
+function Divider() {
+  return (
+    <div className="flex items-center justify-center gap-4 my-2">
+      <div className="w-16 h-px bg-gold opacity-60" />
+      <Heart size={14} className="text-gold opacity-80" fill="currentColor" />
+      <div className="w-16 h-px bg-gold opacity-60" />
+    </div>
+  );
+}
 
 export default function LandingPage() {
+  const waLink = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hola, me interesa Wedding Plan MX para mi boda.')}`;
+  const mailLink = `mailto:${EMAIL}?subject=${encodeURIComponent('Información sobre Wedding Plan MX')}`;
+
   return (
-    <div className="min-h-screen bg-[#FDF6F0] font-sans text-[#333333]">
-      {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#e8d5c4]">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Heart className="w-5 h-5 text-primary fill-primary" />
-            <span className="font-serif text-xl text-primary tracking-wide">Wedding Plan MX</span>
+    <div className="min-h-screen bg-cream font-sans text-charcoal">
+
+      {/* NAV */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-sm border-b border-gold/20">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <span className="font-serif text-xl text-charcoal tracking-widest">
+            Wedding Plan <span className="text-gold">MX</span>
+          </span>
+          <div className="flex gap-3">
+            <a
+              href={mailLink}
+              className="hidden sm:flex items-center gap-2 text-sm text-muted hover:text-charcoal transition-colors"
+            >
+              <Mail size={15} />
+              Contacto
+            </a>
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-gold text-white text-sm px-4 py-2 rounded-full hover:bg-gold-dark transition-colors"
+            >
+              <MessageCircle size={15} />
+              WhatsApp
+            </a>
           </div>
-          <a
-            href="mailto:arturo.aoh.26@gmail.com"
-            className="bg-primary text-white text-sm px-5 py-2.5 rounded-full font-medium hover:bg-secondary transition-colors"
-          >
-            Solicitar demo
-          </a>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="pt-32 pb-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="md:flex items-center gap-16">
-            {/* Copy */}
-            <div className="flex-1 space-y-7">
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm px-4 py-1.5 rounded-full font-medium">
-                <Star className="w-3.5 h-3.5 fill-primary" />
-                Plataforma de bodas todo en uno
-              </div>
-              <h1 className="text-5xl md:text-6xl font-serif leading-tight text-[#2a1810]">
-                Tu boda,<br />
-                <span className="text-primary">perfectamente</span><br />
-                organizada
-              </h1>
-              <p className="text-lg text-[#666666] leading-relaxed max-w-lg">
-                Gestiona invitados, confirmaciones, mesas y más desde un panel elegante.
-                Tus invitados viven una experiencia moderna y memorable.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <a
-                  href="mailto:arturo.aoh.26@gmail.com"
-                  className="inline-flex items-center gap-2 bg-primary text-white px-7 py-3.5 rounded-full font-medium hover:bg-secondary transition-colors shadow-lg shadow-primary/20"
-                >
-                  Solicitar demo <ChevronRight className="w-4 h-4" />
-                </a>
-                <a
-                  href="https://demo.wedding-plan.app"
-                  target="_blank"
-                  className="inline-flex items-center gap-2 border border-[#e8d5c4] text-[#555] px-7 py-3.5 rounded-full font-medium hover:bg-white transition-colors"
-                >
-                  Ver ejemplo en vivo
-                </a>
-              </div>
-            </div>
-
-            {/* Mockup visual */}
-            <div className="flex-1 mt-12 md:mt-0">
-              <div className="relative">
-                {/* Card principal */}
-                <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/60">
-                  <div className="text-center mb-6">
-                    <p className="text-xs text-accent uppercase tracking-widest font-semibold mb-2">Invitación personalizada</p>
-                    <h2 className="text-4xl font-serif text-primary mb-1">Brenda & Arturo</h2>
-                    <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto my-3"></div>
-                    <p className="text-accent font-light tracking-wider">31 · Octubre · 2026</p>
-                  </div>
-                  {/* Stats mini */}
-                  <div className="grid grid-cols-3 gap-3 mb-6">
-                    {[
-                      { val: "180", label: "Invitados" },
-                      { val: "142", label: "Confirmados" },
-                      { val: "20", label: "Mesas" },
-                    ].map((s) => (
-                      <div key={s.label} className="bg-[#FDF6F0] rounded-2xl p-3 text-center">
-                        <p className="text-2xl font-serif text-primary">{s.val}</p>
-                        <p className="text-xs text-[#999] mt-0.5">{s.label}</p>
-                      </div>
-                    ))}
-                  </div>
-                  {/* Guest list mini */}
-                  <div className="space-y-2">
-                    {[
-                      { name: "María González", status: "yes" },
-                      { name: "Carlos Ramírez", status: "pending" },
-                      { name: "Ana López", status: "yes" },
-                    ].map((g) => (
-                      <div key={g.name} className="flex items-center justify-between bg-[#FDF6F0] rounded-xl px-4 py-2.5">
-                        <span className="text-sm text-[#444]">{g.name}</span>
-                        <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${
-                          g.status === "yes"
-                            ? "bg-emerald-100 text-emerald-700"
-                            : "bg-amber-100 text-amber-700"
-                        }`}>
-                          {g.status === "yes" ? "Confirmado" : "Pendiente"}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+      {/* HERO */}
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-cream via-linen to-blush pt-20">
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a96e' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
+        <div className="relative text-center px-6 max-w-4xl mx-auto">
+          <p className="text-gold tracking-[0.4em] text-xs uppercase mb-6 font-light">
+            Sistema de Administración
+          </p>
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl text-charcoal leading-tight mb-6">
+            Tu boda, perfectamente
+            <br />
+            <span className="text-gold">organizada</span>
+          </h1>
+          <Divider />
+          <p className="mt-6 text-muted text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed font-light">
+            Panel de administración elegante para gestionar invitados, mesas y confirmaciones.
+            Todo lo que necesitas para el día más importante.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-gold text-white px-8 py-4 rounded-full text-sm tracking-widest uppercase hover:bg-gold-dark transition-all duration-300 shadow-lg shadow-gold/20"
+            >
+              <MessageCircle size={18} />
+              Solicitar Demo
+            </a>
+            <a
+              href="#features"
+              className="inline-flex items-center justify-center gap-2 border border-gold/40 text-charcoal px-8 py-4 rounded-full text-sm tracking-widest uppercase hover:border-gold hover:bg-blush transition-all duration-300"
+            >
+              Ver características
+              <ChevronRight size={16} />
+            </a>
+          </div>
+          <div className="mt-16 flex flex-wrap justify-center gap-8 text-sm text-muted">
+            {[['500+', 'Invitados gestionados'], ['10+', 'Bodas administradas'], ['100%', 'En la nube']].map(
+              ([val, label]) => (
+                <div key={label} className="text-center">
+                  <div className="font-serif text-3xl text-gold">{val}</div>
+                  <div className="mt-1 text-xs tracking-widest uppercase">{label}</div>
                 </div>
-                {/* Badge flotante */}
-                <div className="absolute -top-4 -right-4 bg-primary text-white text-xs px-4 py-2 rounded-full shadow-lg font-medium">
-                  Actualización en vivo
-                </div>
-                <div className="absolute -bottom-4 -left-4 bg-white border border-[#e8d5c4] text-xs px-4 py-2.5 rounded-2xl shadow-lg text-[#555]">
-                  <Smartphone className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                  100% responsive
-                </div>
-              </div>
-            </div>
+              )
+            )}
           </div>
         </div>
       </section>
 
-      {/* Stats bar */}
-      <section className="bg-white border-y border-[#e8d5c4] py-12">
-        <div className="max-w-4xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            { val: "∞", label: "Invitados por evento" },
-            { val: "5s", label: "Actualización automática" },
-            { val: "100%", label: "Responsive y móvil" },
-            { val: "24h", label: "Acceso al panel" },
-          ].map((s) => (
-            <div key={s.label}>
-              <p className="text-4xl font-serif text-primary mb-1">{s.val}</p>
-              <p className="text-sm text-[#888]">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Features grid */}
-      <section className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
+      {/* HOW IT WORKS */}
+      <section className="py-24 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-xs text-accent uppercase tracking-widest font-semibold mb-3">Funcionalidades</p>
-            <h2 className="text-4xl font-serif text-[#2a1810]">Todo lo que necesitas</h2>
-            <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-4"></div>
+            <p className="text-gold tracking-[0.3em] text-xs uppercase mb-3">Proceso</p>
+            <h2 className="font-serif text-4xl sm:text-5xl text-charcoal">Empieza en 4 pasos</h2>
+            <Divider />
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f) => (
-              <div
-                key={f.title}
-                className="bg-white rounded-2xl p-6 border border-[#e8d5c4] hover:shadow-lg hover:border-primary/30 transition-all group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <f.icon className="w-5 h-5 text-primary" />
-                </div>
-                <h3 className="font-semibold text-[#2a1810] mb-2">{f.title}</h3>
-                <p className="text-sm text-[#777] leading-relaxed">{f.desc}</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {steps.map((step) => (
+              <div key={step.number} className="text-center">
+                <div className="font-serif text-5xl text-gold/30 mb-3">{step.number}</div>
+                <h3 className="font-serif text-xl text-charcoal mb-2">{step.title}</h3>
+                <p className="text-muted text-sm leading-relaxed font-light">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Admin panel showcase */}
-      <section className="py-24 px-6 bg-white border-y border-[#e8d5c4]">
-        <div className="max-w-6xl mx-auto">
-          <div className="md:flex items-center gap-16">
-            {/* Visual */}
-            <div className="flex-1 mb-12 md:mb-0">
-              <div className="bg-[#FDF6F0] rounded-3xl p-6 border border-[#e8d5c4]">
-                {/* Tabs mock */}
-                <div className="flex gap-2 mb-5">
-                  <span className="bg-primary text-white text-xs px-4 py-1.5 rounded-full">Invitados</span>
-                  <span className="text-[#999] text-xs px-4 py-1.5 rounded-full border border-[#e8d5c4] bg-white">Mesas</span>
-                  <span className="text-[#999] text-xs px-4 py-1.5 rounded-full border border-[#e8d5c4] bg-white">Estadísticas</span>
+      {/* FEATURES */}
+      <section id="features" className="py-24 bg-linen/50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-gold tracking-[0.3em] text-xs uppercase mb-3">Funcionalidades</p>
+            <h2 className="font-serif text-4xl sm:text-5xl text-charcoal">
+              Todo incluido, sin complicaciones
+            </h2>
+            <Divider />
+            <p className="mt-4 text-muted max-w-xl mx-auto text-sm leading-relaxed font-light">
+              Un sistema pensado para el ritmo real de una boda: rápido, claro y accesible desde cualquier dispositivo.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map(({ icon: Icon, title, desc }) => (
+              <div
+                key={title}
+                className="bg-white rounded-2xl p-6 border border-blush-dark/30 hover:border-gold/40 hover:shadow-lg hover:shadow-gold/10 transition-all duration-300 group"
+              >
+                <div className="w-11 h-11 rounded-full bg-blush flex items-center justify-center mb-4 group-hover:bg-gold/10 transition-colors">
+                  <Icon size={20} className="text-gold" />
                 </div>
-                {/* Guest rows */}
-                <div className="space-y-2 mb-4">
-                  {[
-                    { name: "Familia García", passes: 4, conf: 4, table: "Mesa 3" },
-                    { name: "Roberto Silva", passes: 2, conf: 2, table: "Mesa 7" },
-                    { name: "Daniela Torres", passes: 3, conf: 0, table: "—" },
-                  ].map((g) => (
-                    <div key={g.name} className="bg-white rounded-xl px-4 py-3 flex items-center justify-between border border-[#e8d5c4]">
-                      <div>
-                        <p className="text-sm font-medium text-[#333]">{g.name}</p>
-                        <p className="text-xs text-[#aaa]">{g.passes} pases · {g.table}</p>
-                      </div>
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        g.conf > 0 ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"
-                      }`}>
-                        {g.conf > 0 ? `${g.conf} conf.` : "Pendiente"}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                {/* Action buttons mock */}
-                <div className="flex gap-2 flex-wrap">
-                  <span className="text-xs bg-white border border-[#e8d5c4] text-[#888] px-3 py-1.5 rounded-lg flex items-center gap-1">
-                    <Upload className="w-3 h-3" /> Importar CSV
-                  </span>
-                  <span className="text-xs bg-white border border-[#e8d5c4] text-[#888] px-3 py-1.5 rounded-lg flex items-center gap-1">
-                    <Download className="w-3 h-3" /> Exportar
-                  </span>
-                  <span className="text-xs bg-white border border-[#e8d5c4] text-[#888] px-3 py-1.5 rounded-lg flex items-center gap-1">
-                    <MessageCircle className="w-3 h-3" /> WhatsApp
-                  </span>
-                </div>
+                <h3 className="font-serif text-lg text-charcoal mb-2">{title}</h3>
+                <p className="text-muted text-xs leading-relaxed font-light">{desc}</p>
               </div>
-            </div>
-            {/* Copy */}
-            <div className="flex-1">
-              <p className="text-xs text-accent uppercase tracking-widest font-semibold mb-3">Panel de administración</p>
-              <h2 className="text-4xl font-serif text-[#2a1810] mb-5">Control total de tu evento</h2>
-              <p className="text-[#666] leading-relaxed mb-7">
-                Un panel intuitivo donde tienes visibilidad completa de tu evento.
-                Sin necesidad de hojas de cálculo ni grupos de WhatsApp desordenados.
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* DETALLE VISUAL */}
+      <section className="py-24 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <p className="text-gold tracking-[0.3em] text-xs uppercase mb-3">Panel de control</p>
+              <h2 className="font-serif text-4xl text-charcoal mb-4 leading-snug">
+                Claridad cuando más la necesitas
+              </h2>
+              <Divider />
+              <p className="mt-4 text-muted leading-relaxed font-light text-sm">
+                El día de tu boda no hay tiempo para confusión. Con Wedding Plan MX tienes en una
+                pantalla todo lo que importa: quién confirmó, en qué mesa va, cuántos pases tiene.
               </p>
-              <ul className="space-y-3">
-                {adminFeatures.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm text-[#555]">
-                    <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                    {f}
+              <ul className="mt-8 space-y-3">
+                {[
+                  'Dashboard con métricas clave en tiempo real',
+                  'Filtros por estado: confirmado, pendiente, no asiste',
+                  'Búsqueda instantánea de invitados',
+                  'Asignación de mesas con un clic',
+                  'Capitán de mesa para coordinación en salón',
+                  'Conteo automático de asistentes totales',
+                  'Checklist de tareas con prioridades y fechas',
+                  'Reordenamiento de tareas por arrastre',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-charcoal font-light">
+                    <CheckCircle size={16} className="text-gold mt-0.5 shrink-0" />
+                    {item}
                   </li>
                 ))}
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Guest experience */}
-      <section className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="md:flex items-center gap-16">
-            {/* Copy */}
-            <div className="flex-1 mb-12 md:mb-0">
-              <p className="text-xs text-accent uppercase tracking-widest font-semibold mb-3">Experiencia del invitado</p>
-              <h2 className="text-4xl font-serif text-[#2a1810] mb-5">Elegante desde el primer clic</h2>
-              <p className="text-[#666] leading-relaxed mb-7">
-                Tus invitados abren su enlace personalizado y confirman asistencia en segundos.
-                Diseño adaptado a tu evento, sin distracciones.
-              </p>
-              <div className="space-y-5">
-                {[
-                  { icon: QrCode, t: "Acceso con código único", d: "Sin registros ni contraseñas. Solo su código." },
-                  { icon: Users, t: "Confirmación de acompañantes", d: "Registran el nombre de cada acompañante." },
-                  { icon: Calendar, t: "Agrega a su calendario", d: "Un botón para iOS, Android y escritorio." },
-                  { icon: Mail, t: "Notificación instantánea", d: "El admin ve la confirmación en tiempo real." },
-                ].map((item) => (
-                  <div key={item.t} className="flex gap-4">
-                    <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <item.icon className="w-4 h-4 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-[#2a1810] text-sm">{item.t}</p>
-                      <p className="text-sm text-[#777] mt-0.5">{item.d}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Phone mockup */}
-            <div className="flex-1 flex justify-center">
-              <div className="w-64 bg-white rounded-[2.5rem] border-4 border-[#e8d5c4] shadow-2xl overflow-hidden">
-                {/* Phone notch */}
-                <div className="bg-[#e8d5c4] h-6 flex justify-center items-end pb-1">
-                  <div className="w-16 h-1 bg-[#c9a98a] rounded-full"></div>
+            {/* Mock UI */}
+            <div className="relative">
+              <div className="bg-cream rounded-3xl p-6 border border-blush-dark/30 shadow-xl">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-2.5 h-2.5 rounded-full bg-blush-dark" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-gold/40" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-gold/20" />
+                  <span className="ml-2 text-xs text-muted font-light">Wedding Plan MX — Dashboard</span>
                 </div>
-                {/* Screen content */}
-                <div className="p-5 bg-[#FDF6F0] min-h-96">
-                  <div className="text-center mb-5">
-                    <p className="text-xs text-accent uppercase tracking-widest mb-2">Tu invitación</p>
-                    <h3 className="text-2xl font-serif text-primary">Brenda & Arturo</h3>
-                    <div className="w-10 h-0.5 bg-primary/40 mx-auto my-2"></div>
-                    <p className="text-xs text-[#888]">31 de Octubre, 2026</p>
-                  </div>
-                  <div className="bg-white rounded-2xl p-4 mb-3 border border-[#e8d5c4]">
-                    <p className="text-xs text-[#aaa] mb-1">Invitado</p>
-                    <p className="text-sm font-medium text-[#333]">María González</p>
-                    <p className="text-xs text-[#bbb] mt-0.5">2 pases confirmados</p>
-                  </div>
-                  <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 mb-3">
-                    <p className="text-xs text-emerald-700 font-medium">✓ Asistencia confirmada</p>
-                  </div>
-                  <button className="w-full bg-primary text-white text-xs py-2.5 rounded-xl font-medium">
-                    Añadir al calendario
-                  </button>
+                <div className="grid grid-cols-3 gap-3 mb-4">
+                  {[
+                    { label: 'Confirmados', val: '84', color: 'bg-green-50 border-green-200 text-green-700' },
+                    { label: 'Pendientes', val: '23', color: 'bg-amber-50 border-amber-200 text-amber-700' },
+                    { label: 'No asisten', val: '8', color: 'bg-rose-50 border-rose-200 text-rose-700' },
+                  ].map(({ label, val, color }) => (
+                    <div key={label} className={`rounded-xl border p-3 text-center ${color}`}>
+                      <div className="text-2xl font-serif font-light">{val}</div>
+                      <div className="text-xs mt-0.5 font-light">{label}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="space-y-2">
+                  {[
+                    { name: 'García Rodríguez', mesa: '3', status: 'yes' },
+                    { name: 'López Martínez', mesa: '7', status: 'yes' },
+                    { name: 'Ramírez Vega', mesa: '—', status: 'pending' },
+                    { name: 'Torres Núñez', mesa: '2', status: 'yes' },
+                  ].map(({ name, mesa, status }) => (
+                    <div
+                      key={name}
+                      className="flex items-center justify-between bg-white rounded-xl px-4 py-2.5 border border-blush-dark/20"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-7 h-7 rounded-full bg-blush flex items-center justify-center text-xs text-gold font-serif">
+                          {name[0]}
+                        </div>
+                        <span className="text-xs text-charcoal font-light">{name}</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs text-muted">Mesa {mesa}</span>
+                        <span
+                          className={`w-2 h-2 rounded-full ${
+                            status === 'yes' ? 'bg-green-400' : 'bg-amber-400'
+                          }`}
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-blush opacity-60 blur-2xl" />
+              <div className="absolute -top-4 -left-4 w-20 h-20 rounded-full bg-gold/10 blur-2xl" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="py-24 px-6 bg-white border-y border-[#e8d5c4]">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs text-accent uppercase tracking-widest font-semibold mb-3">Proceso</p>
-            <h2 className="text-4xl font-serif text-[#2a1810]">Cómo funciona</h2>
-            <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-4"></div>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-8">
-            {steps.map((s) => (
-              <div key={s.num} className="flex gap-5">
-                <div className="flex-shrink-0">
-                  <span className="text-4xl font-serif text-primary/20 leading-none">{s.num}</span>
-                </div>
-                <div className="pt-1">
-                  <h3 className="font-semibold text-[#2a1810] mb-2">{s.title}</h3>
-                  <p className="text-sm text-[#777] leading-relaxed">{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* TESTIMONIAL / QUOTE */}
+      <section className="py-20 bg-charcoal text-center">
+        <div className="max-w-3xl mx-auto px-6">
+          <Star size={20} className="text-gold mx-auto mb-6 opacity-60" fill="currentColor" />
+          <blockquote className="font-serif text-2xl sm:text-3xl text-cream leading-relaxed italic">
+            "El día de mi boda supe exactamente quién estaba sentado en cada mesa, quién faltó y quién llegó de sorpresa. Sin estrés."
+          </blockquote>
+          <p className="mt-6 text-muted text-sm tracking-widest uppercase font-light">— Novia feliz, CDMX 2024</p>
         </div>
       </section>
 
-      {/* Tech section */}
-      <section className="py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs text-accent uppercase tracking-widest font-semibold mb-3">Tecnología</p>
-          <h2 className="text-4xl font-serif text-[#2a1810] mb-5">Construido para durar</h2>
-          <p className="text-[#666] leading-relaxed max-w-xl mx-auto mb-12">
-            Stack moderno, confiable y de alto rendimiento.
-            Actualizaciones en tiempo real cada 5 segundos sin recargar la página.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { name: "React + TypeScript", desc: "Frontend robusto" },
-              { name: "Strapi v5", desc: "Backend headless" },
-              { name: "Tailwind CSS", desc: "UI elegante" },
-              { name: "JWT Auth", desc: "Acceso seguro" },
-            ].map((t) => (
-              <div key={t.name} className="bg-white border border-[#e8d5c4] rounded-2xl p-5 hover:border-primary/30 transition-colors">
-                <p className="font-semibold text-[#2a1810] text-sm mb-1">{t.name}</p>
-                <p className="text-xs text-[#999]">{t.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA final */}
-      <section className="py-24 px-6">
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-3xl border border-[#e8d5c4] shadow-xl p-12 text-center">
-            <Heart className="w-10 h-10 text-primary fill-primary/20 mx-auto mb-6" />
-            <h2 className="text-4xl font-serif text-[#2a1810] mb-4">
-              ¿Listo para tu evento perfecto?
+      {/* PRICING CTA */}
+      <section className="py-24 bg-linen/40">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <p className="text-gold tracking-[0.3em] text-xs uppercase mb-3">Inversión</p>
+            <h2 className="font-serif text-4xl sm:text-5xl text-charcoal">
+              Un solo pago. Todo incluido.
             </h2>
-            <p className="text-[#666] leading-relaxed mb-8">
-              Agenda una demostración gratuita y te mostramos cómo personalizar
-              la plataforma para tu boda o evento especial.
+            <Divider />
+            <p className="mt-4 text-muted max-w-xl mx-auto text-sm leading-relaxed font-light">
+              Sin niveles, sin límites, sin mensualidades. Pagas una vez y tienes acceso
+              completo a todas las funcionalidades para tu evento.
             </p>
+          </div>
+
+          <div className="bg-charcoal rounded-3xl p-8 sm:p-12 border border-gold/30 shadow-2xl text-center">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <Infinity size={32} className="text-gold" />
+              <span className="font-serif text-3xl text-cream">Sin límites</span>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3 mb-10 text-left max-w-lg mx-auto">
+              {[
+                'Invitados ilimitados',
+                'Acompañantes ilimitados',
+                'Mesas ilimitadas',
+                'Tareas ilimitadas',
+                'Estadísticas completas',
+                'Links de WhatsApp',
+                'Checklist por secciones',
+                'Soporte incluido',
+              ].map((feat) => (
+                <div key={feat} className="flex items-center gap-2 text-sm font-light">
+                  <CheckCircle size={15} className="text-gold shrink-0" />
+                  <span className="text-cream/80">{feat}</span>
+                </div>
+              ))}
+            </div>
             <a
-              href="mailto:arturo.aoh.26@gmail.com"
-              className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-medium hover:bg-secondary transition-colors shadow-lg shadow-primary/20 text-lg"
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-gold text-white px-10 py-4 rounded-full text-sm tracking-widest uppercase hover:bg-gold-dark transition-all duration-300 shadow-lg shadow-gold/20"
             >
-              <Mail className="w-5 h-5" />
-              Contáctanos
+              <MessageCircle size={16} />
+              Solicitar cotización
             </a>
-            <p className="text-xs text-[#bbb] mt-6">Sin compromisos · Respuesta en menos de 24 horas</p>
+            <p className="mt-4 text-muted text-xs font-light">
+              Precio único por evento · Sin sorpresas
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-[#e8d5c4] py-8 px-6 text-center">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <Heart className="w-4 h-4 text-primary fill-primary" />
-          <span className="font-serif text-primary">Wedding Plan MX</span>
+      {/* CONTACT */}
+      <section className="py-24 bg-white">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <p className="text-gold tracking-[0.3em] text-xs uppercase mb-3">Contacto</p>
+          <h2 className="font-serif text-4xl sm:text-5xl text-charcoal">Hablemos de tu boda</h2>
+          <Divider />
+          <p className="mt-4 text-muted text-sm leading-relaxed font-light max-w-lg mx-auto">
+            Cuéntanos la fecha, cuántos invitados esperan y cualquier detalle especial.
+            Te respondemos en menos de 24 horas.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 py-4 rounded-full text-sm tracking-widest uppercase hover:opacity-90 transition-opacity shadow-lg shadow-green-200"
+            >
+              <MessageCircle size={18} />
+              WhatsApp: 442 120 4333
+            </a>
+            <a
+              href={mailLink}
+              className="inline-flex items-center justify-center gap-3 border border-gold/40 text-charcoal px-8 py-4 rounded-full text-sm tracking-widest uppercase hover:border-gold hover:bg-blush transition-all"
+            >
+              <Mail size={18} />
+              Enviar correo
+            </a>
+          </div>
+          <p className="mt-6 text-muted text-xs font-light">{EMAIL}</p>
         </div>
-        <p className="text-xs text-[#bbb]">Plataforma de gestión de eventos</p>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-charcoal text-cream/50 py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="text-center sm:text-left">
+              <span className="font-serif text-xl text-cream tracking-widest">
+                Wedding Plan <span className="text-gold">MX</span>
+              </span>
+              <p className="text-xs mt-1 font-light">Sistema de administración para bodas</p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center gap-4 text-xs">
+              <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-gold transition-colors">
+                <Phone size={13} />
+                442 120 4333
+              </a>
+              <span className="hidden sm:block opacity-30">|</span>
+              <a href={mailLink} className="flex items-center gap-2 hover:text-gold transition-colors">
+                <Mail size={13} />
+                {EMAIL}
+              </a>
+            </div>
+          </div>
+          <div className="mt-8 pt-6 border-t border-cream/10 text-center text-xs font-light">
+            © {new Date().getFullYear()} Wedding Plan MX · Hecho con{' '}
+            <Heart size={11} className="inline text-gold" fill="currentColor" /> en México
+          </div>
+        </div>
       </footer>
     </div>
   );
